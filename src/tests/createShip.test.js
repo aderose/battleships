@@ -31,3 +31,10 @@ test('Returned object contains 3 properties', () => {
   expect(Object.keys(createShip(4)).length).toBe(3);
   expect(Object.keys(createShip(5)).length).toBe(3);
 });
+
+test('Returned object should have length property equal to passed argument', () => {
+  expect(createShip(2)).toHaveProperty('length', 2);
+  expect(createShip(3)).toHaveProperty('length', 3);
+  expect(createShip(4)).toHaveProperty('length', 4);
+  expect(createShip(5)).toHaveProperty('length', 5);
+});
