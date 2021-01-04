@@ -3,7 +3,7 @@ const createShip = (length) => {
   if (![2, 3, 4, 5].includes(length))
     throw new Error('Length can only be 2, 3, 4 or 5');
   return {
-    prop1: '',
+    length,
     prop2: '',
     prop3: '',
   };
