@@ -25,7 +25,7 @@ test('createShip returns an object', () => {
   expect(typeof createShip(5)).toBe('object');
 });
 
-test('createShip returned object contains 3 properties', () => {
+test('Returned object contains 3 properties', () => {
   expect(Object.keys(createShip(2)).length).toBe(3);
   expect(Object.keys(createShip(3)).length).toBe(3);
   expect(Object.keys(createShip(4)).length).toBe(3);
