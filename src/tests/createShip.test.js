@@ -17,3 +17,10 @@ test('Throw error if length is not in the array [5, 4, 3, 3, 2]', () => {
   expect(() => createShip(0.980394)).toThrow('Length can only be 2, 3, 4 or 5');
   expect(() => createShip(5 / 2)).toThrow('Length can only be 2, 3, 4 or 5');
 });
+
+test('createShip returns an object', () => {
+  expect(typeof createShip(2)).toBe('object');
+  expect(typeof createShip(3)).toBe('object');
+  expect(typeof createShip(4)).toBe('object');
+  expect(typeof createShip(5)).toBe('object');
+});
