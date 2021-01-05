@@ -120,3 +120,30 @@ test('Returned object should have a property containing the isSunk method', () =
 test('isSunk method should return a boolean', () => {
   expect(typeof createShip(2).isSunk()).toBe('boolean');
 });
+
+describe('isSunk returns false if not hit', () => {
+  const ship = createShip(2);
+
+  it('isSunk returns false if not hit', () => {
+    expect(ship.isSunk()).toBe(false);
+  });
+});
+
+describe('isSunk returns false if hit but not sunk', () => {
+  const ship = createShip(2);
+  ship.hit(0);
+
+  it('isSunk returns false if hit but not sunk', () => {
+    expect(ship.isSunk()).toBe(false);
+  });
+});
+
+describe('isSunk returns true if sunk', () => {
+  const ship = createShip(2);
+  ship.hit(0);
+  ship.hit(1);
+
+  it('isSunk returns true if sunk', () => {
+    expect(ship.isSunk()).toBe(true);
+  });
+});
