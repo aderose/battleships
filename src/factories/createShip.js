@@ -17,7 +17,7 @@ const createShip = (length) => {
       return state;
     },
     isSunk: () => {
-      return true;
+      return state.reduce((sum, el) => sum + el) === length;
     },
   };
 };
