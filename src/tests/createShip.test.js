@@ -83,3 +83,24 @@ test('Hit method throws error if position is greater or equal to length', () => 
     'Position must be less than length',
   );
 });
+
+test('Hit method returns an Array', () => {
+  expect(createShip(5).hit(3)).toBeInstanceOf(Array);
+});
+
+test('Hit method updates the ship array state', () => {
+  expect(createShip(2).hit(0)).toEqual([0, 1]);
+  expect(createShip(2).hit(1)).toEqual([1, 0]);
+  expect(createShip(3).hit(0)).toEqual([0, 1, 1]);
+  expect(createShip(3).hit(1)).toEqual([1, 0, 1]);
+  expect(createShip(3).hit(2)).toEqual([1, 1, 0]);
+  expect(createShip(4).hit(0)).toEqual([0, 1, 1, 1]);
+  expect(createShip(4).hit(1)).toEqual([1, 0, 1, 1]);
+  expect(createShip(4).hit(2)).toEqual([1, 1, 0, 1]);
+  expect(createShip(4).hit(3)).toEqual([1, 1, 1, 0]);
+  expect(createShip(5).hit(0)).toEqual([0, 1, 1, 1, 1]);
+  expect(createShip(5).hit(1)).toEqual([1, 0, 1, 1, 1]);
+  expect(createShip(5).hit(2)).toEqual([1, 1, 0, 1, 1]);
+  expect(createShip(5).hit(3)).toEqual([1, 1, 1, 0, 1]);
+  expect(createShip(5).hit(4)).toEqual([1, 1, 1, 1, 0]);
+});
