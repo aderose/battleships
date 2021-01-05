@@ -4,7 +4,14 @@ const createShip = (length) => {
     throw new Error('Length can only be 2, 3, 4 or 5');
   return {
     length,
-    hit: () => {},
+    hit: (position) => {
+      if (typeof position !== 'number')
+        throw new Error('Position must be a number');
+      if (position < 0 || position !== parseInt(position))
+        throw new Error('Position must be a positive integer');
+      if (position >= length)
+        throw new Error('Position must be less than length');
+    },
     prop3: '',
   };
 };
