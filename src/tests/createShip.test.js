@@ -116,3 +116,7 @@ test('Returned object should have a property containing the isSunk method', () =
   expect(typeof createShip(4).isSunk).toBe('function');
   expect(typeof createShip(5).isSunk).toBe('function');
 });
+
+test('isSunk method should return a boolean', () => {
+  expect(typeof createShip(2).isSunk()).toBe('boolean');
+});
