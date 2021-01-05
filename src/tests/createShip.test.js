@@ -104,3 +104,15 @@ test('Hit method updates the ship array state', () => {
   expect(createShip(5).hit(3)).toEqual([1, 1, 1, 0, 1]);
   expect(createShip(5).hit(4)).toEqual([1, 1, 1, 1, 0]);
 });
+
+test('Returned object should have a property containing the isSunk method', () => {
+  expect(createShip(2)).toHaveProperty('isSunk');
+  expect(createShip(3)).toHaveProperty('isSunk');
+  expect(createShip(4)).toHaveProperty('isSunk');
+  expect(createShip(5)).toHaveProperty('isSunk');
+
+  expect(typeof createShip(2).isSunk).toBe('function');
+  expect(typeof createShip(3).isSunk).toBe('function');
+  expect(typeof createShip(4).isSunk).toBe('function');
+  expect(typeof createShip(5).isSunk).toBe('function');
+});
