@@ -4,7 +4,7 @@ const createShip = (length) => {
     throw new Error('Length can only be 2, 3, 4 or 5');
   return {
     length,
-    prop2: '',
+    hit: () => {},
     prop3: '',
   };
 };
