@@ -38,3 +38,15 @@ test('Returned object should have length property equal to passed argument', () 
   expect(createShip(4)).toHaveProperty('length', 4);
   expect(createShip(5)).toHaveProperty('length', 5);
 });
+
+test('Returned object should have a property containing the hit method', () => {
+  expect(createShip(2)).toHaveProperty('hit');
+  expect(createShip(3)).toHaveProperty('hit');
+  expect(createShip(4)).toHaveProperty('hit');
+  expect(createShip(5)).toHaveProperty('hit');
+
+  expect(typeof createShip(2).hit).toBe('function');
+  expect(typeof createShip(3).hit).toBe('function');
+  expect(typeof createShip(4).hit).toBe('function');
+  expect(typeof createShip(5).hit).toBe('function');
+});
