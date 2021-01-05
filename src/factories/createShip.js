@@ -3,7 +3,7 @@ const createShip = (length) => {
   if (![2, 3, 4, 5].includes(length))
     throw new Error('Length can only be 2, 3, 4 or 5');
 
-  const state = Array.from({ length }, () => 1);
+  const state = Array.from({ length }, () => 0);
   return {
     length,
     hit: (position) => {
@@ -13,7 +13,7 @@ const createShip = (length) => {
         throw new Error('Position must be a positive integer');
       if (position >= length)
         throw new Error('Position must be less than length');
-      state[position] = 0;
+      state[position] = 1;
       return state;
     },
     isSunk: () => {

@@ -89,20 +89,20 @@ test('Hit method returns an Array', () => {
 });
 
 test('Hit method updates the ship array state', () => {
-  expect(createShip(2).hit(0)).toEqual([0, 1]);
-  expect(createShip(2).hit(1)).toEqual([1, 0]);
-  expect(createShip(3).hit(0)).toEqual([0, 1, 1]);
-  expect(createShip(3).hit(1)).toEqual([1, 0, 1]);
-  expect(createShip(3).hit(2)).toEqual([1, 1, 0]);
-  expect(createShip(4).hit(0)).toEqual([0, 1, 1, 1]);
-  expect(createShip(4).hit(1)).toEqual([1, 0, 1, 1]);
-  expect(createShip(4).hit(2)).toEqual([1, 1, 0, 1]);
-  expect(createShip(4).hit(3)).toEqual([1, 1, 1, 0]);
-  expect(createShip(5).hit(0)).toEqual([0, 1, 1, 1, 1]);
-  expect(createShip(5).hit(1)).toEqual([1, 0, 1, 1, 1]);
-  expect(createShip(5).hit(2)).toEqual([1, 1, 0, 1, 1]);
-  expect(createShip(5).hit(3)).toEqual([1, 1, 1, 0, 1]);
-  expect(createShip(5).hit(4)).toEqual([1, 1, 1, 1, 0]);
+  expect(createShip(2).hit(0)).toEqual([1, 0]);
+  expect(createShip(2).hit(1)).toEqual([0, 1]);
+  expect(createShip(3).hit(0)).toEqual([1, 0, 0]);
+  expect(createShip(3).hit(1)).toEqual([0, 1, 0]);
+  expect(createShip(3).hit(2)).toEqual([0, 0, 1]);
+  expect(createShip(4).hit(0)).toEqual([1, 0, 0, 0]);
+  expect(createShip(4).hit(1)).toEqual([0, 1, 0, 0]);
+  expect(createShip(4).hit(2)).toEqual([0, 0, 1, 0]);
+  expect(createShip(4).hit(3)).toEqual([0, 0, 0, 1]);
+  expect(createShip(5).hit(0)).toEqual([1, 0, 0, 0, 0]);
+  expect(createShip(5).hit(1)).toEqual([0, 1, 0, 0, 0]);
+  expect(createShip(5).hit(2)).toEqual([0, 0, 1, 0, 0]);
+  expect(createShip(5).hit(3)).toEqual([0, 0, 0, 1, 0]);
+  expect(createShip(5).hit(4)).toEqual([0, 0, 0, 0, 1]);
 });
 
 test('Returned object should have a property containing the isSunk method', () => {
