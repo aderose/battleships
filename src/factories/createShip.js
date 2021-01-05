@@ -16,7 +16,9 @@ const createShip = (length) => {
       state[position] = 0;
       return state;
     },
-    isSunk: () => {},
+    isSunk: () => {
+      return true;
+    },
   };
 };
 
