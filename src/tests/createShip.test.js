@@ -50,3 +50,36 @@ test('Returned object should have a property containing the hit method', () => {
   expect(typeof createShip(4).hit).toBe('function');
   expect(typeof createShip(5).hit).toBe('function');
 });
+
+test('Hit method throws error if position is not a number', () => {
+  expect(() => createShip(5).hit()).toThrow('Position must be a number');
+  expect(() => createShip(5).hit(undefined)).toThrow(
+    'Position must be a number',
+  );
+  expect(() => createShip(5).hit(null)).toThrow('Position must be a number');
+  expect(() => createShip(5).hit(true)).toThrow('Position must be a number');
+  expect(() => createShip(5).hit([])).toThrow('Position must be a number');
+  expect(() => createShip(5).hit({})).toThrow('Position must be a number');
+  expect(() => createShip(5).hit('')).toThrow('Position must be a number');
+  expect(() => createShip(5).hit(() => {})).toThrow(
+    'Position must be a number',
+  );
+});
+
+test('Hit method throws error if position is not a positive integer', () => {
+  expect(() => createShip(5).hit(-1)).toThrow(
+    'Position must be a positive integer',
+  );
+  expect(() => createShip(5).hit(0.8)).toThrow(
+    'Position must be a positive integer',
+  );
+});
+
+test('Hit method throws error if position is greater or equal to length', () => {
+  expect(() => createShip(5).hit(5)).toThrow(
+    'Position must be less than length',
+  );
+  expect(() => createShip(5).hit(100)).toThrow(
+    'Position must be less than length',
+  );
+});
