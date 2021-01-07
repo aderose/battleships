@@ -25,6 +25,13 @@ const createGameboard = (size) => {
     }
     if (typeof isHorizontal !== 'boolean')
       throw new Error('isHorizontal must be a boolean');
+
+    for (let i = 0; i < ship.length; i++) {
+      gameboard[y][x] = ship;
+      isHorizontal ? x++ : y++;
+    }
+
+    return gameboard;
   };
   return { getBoard, place };
 };
