@@ -85,3 +85,24 @@ test('Throw error if y coordinate is not an integer between 0-9', () => {
     'y coordinate must be an integer between 0-9',
   );
 });
+
+test('Throw error if isHorizontal is passed and not a boolean', () => {
+  expect(() => gameboard.place(0, 0, 2, null)).toThrow(
+    'isHorizontal must be a boolean',
+  );
+  expect(() => gameboard.place(0, 0, 2, [])).toThrow(
+    'isHorizontal must be a boolean',
+  );
+  expect(() => gameboard.place(0, 0, 2, {})).toThrow(
+    'isHorizontal must be a boolean',
+  );
+  expect(() => gameboard.place(0, 0, 2, '')).toThrow(
+    'isHorizontal must be a boolean',
+  );
+  expect(() => gameboard.place(0, 0, 2, 0)).toThrow(
+    'isHorizontal must be a boolean',
+  );
+  expect(() => gameboard.place(0, 0, 2, () => {})).toThrow(
+    'isHorizontal must be a boolean',
+  );
+});
