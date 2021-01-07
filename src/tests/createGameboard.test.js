@@ -1,4 +1,5 @@
 import createGameboard from '../factories/createGameboard';
+import createShip from '../factories/createShip';
 
 let gameboard, board;
 
@@ -15,14 +16,12 @@ test('Returns a 10x10 gameboard', () => {
 });
 
 test("Throw error if coordinates and length aren't passed", () => {
-  expect(() => gameboard.place()).toThrow(
-    'Arguments x, y & length are required',
-  );
+  expect(() => gameboard.place()).toThrow('Arguments x, y & ship are required');
   expect(() => gameboard.place(0)).toThrow(
-    'Arguments x, y & length are required',
+    'Arguments x, y & ship are required',
   );
   expect(() => gameboard.place(0, 0)).toThrow(
-    'Arguments x, y & length are required',
+    'Arguments x, y & ship are required',
   );
 });
 
@@ -86,23 +85,46 @@ test('Throw error if y coordinate is not an integer between 0-9', () => {
   );
 });
 
+test('Throw error if ship argument is not a ship object', () => {
+  expect(() => gameboard.place(0, 0, null)).toThrow(
+    'ship must be a ship object',
+  );
+  expect(() => gameboard.place(0, 0, true)).toThrow(
+    'ship must be a ship object',
+  );
+  expect(() => gameboard.place(0, 0, [])).toThrow('ship must be a ship object');
+  expect(() => gameboard.place(0, 0, '')).toThrow('ship must be a ship object');
+  expect(() => gameboard.place(0, 0, 0)).toThrow('ship must be a ship object');
+  expect(() => gameboard.place(0, 0, () => {})).toThrow(
+    'ship must be a ship object',
+  );
+  expect(() =>
+    gameboard.place(0, 0, { not: 'not', a: 'a', ship: 'ship' }),
+  ).toThrow('ship must be a ship object');
+  expect(() =>
+    gameboard.place(0, 0, { length: 'not', hit: 'a', isSunk: 'ship' }),
+  ).toThrow('ship must be a ship object');
+});
+
 test('Throw error if isHorizontal is passed and not a boolean', () => {
-  expect(() => gameboard.place(0, 0, 2, null)).toThrow(
+  const ship = createShip(2);
+
+  expect(() => gameboard.place(0, 0, ship, null)).toThrow(
     'isHorizontal must be a boolean',
   );
-  expect(() => gameboard.place(0, 0, 2, [])).toThrow(
+  expect(() => gameboard.place(0, 0, ship, [])).toThrow(
     'isHorizontal must be a boolean',
   );
-  expect(() => gameboard.place(0, 0, 2, {})).toThrow(
+  expect(() => gameboard.place(0, 0, ship, {})).toThrow(
     'isHorizontal must be a boolean',
   );
-  expect(() => gameboard.place(0, 0, 2, '')).toThrow(
+  expect(() => gameboard.place(0, 0, ship, '')).toThrow(
     'isHorizontal must be a boolean',
   );
-  expect(() => gameboard.place(0, 0, 2, 0)).toThrow(
+  expect(() => gameboard.place(0, 0, ship, 0)).toThrow(
     'isHorizontal must be a boolean',
   );
-  expect(() => gameboard.place(0, 0, 2, () => {})).toThrow(
+  expect(() => gameboard.place(0, 0, ship, () => {})).toThrow(
     'isHorizontal must be a boolean',
   );
 });
