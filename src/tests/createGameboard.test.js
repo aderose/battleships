@@ -55,3 +55,33 @@ test('Throw error if x coordinate is not an integer between 0-9', () => {
     'x coordinate must be an integer between 0-9',
   );
 });
+
+test('Throw error if y coordinate is not an integer between 0-9', () => {
+  expect(() => gameboard.place(0, null, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, true, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, [], 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, {}, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, '', 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, () => {}, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, -1, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, 0.8, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.place(0, 20, 2)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+});
