@@ -3,7 +3,7 @@ import createGameboard from '../factories/createGameboard';
 let gameboard, board;
 
 beforeAll(() => {
-  gameboard = createGameboard();
+  gameboard = createGameboard(10);
   board = gameboard.getBoard();
 });
 
