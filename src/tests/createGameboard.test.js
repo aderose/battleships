@@ -13,3 +13,15 @@ test('Returns a 10x10 gameboard', () => {
     expect(row.length).toBe(10);
   });
 });
+
+test("Throw error if coordinates and length aren't passed", () => {
+  expect(() => gameboard.place()).toThrow(
+    'Invalid number of arguments: x, y & length are required',
+  );
+  expect(() => gameboard.place(0)).toThrow(
+    'Invalid number of arguments: x, y & length are required',
+  );
+  expect(() => gameboard.place(0, 0)).toThrow(
+    'Invalid number of arguments: x, y & length are required',
+  );
+});
