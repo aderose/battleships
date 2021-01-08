@@ -264,3 +264,37 @@ test('Adding a ship vertically of length 5 at (0, 0)', () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 });
+
+test('Adding a ship vertically of length 5 at (9, 9)', () => {
+  const gameboard = createGameboard(10);
+  const ship = createShip(5);
+  expect(gameboard.place(9, 9, ship, false)).toEqual([
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, ship],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, ship],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, ship],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, ship],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, ship],
+  ]);
+});
+
+test('Adding a ship horizontally of length 5 at (9, 9)', () => {
+  const gameboard = createGameboard(10);
+  const ship = createShip(5);
+  expect(gameboard.place(9, 9, ship, true)).toEqual([
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, ship, ship, ship, ship, ship],
+  ]);
+});
