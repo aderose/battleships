@@ -26,9 +26,25 @@ const createGameboard = (size) => {
     if (typeof isHorizontal !== 'boolean')
       throw new Error('isHorizontal must be a boolean');
 
+    // if ship placed horizontally & it overflows the gameboard, shift it left
+    // by the required number of places
+    let xx = isHorizontal
+      ? x + ship.length > size
+        ? size - ship.length
+        : x
+      : x;
+
+    // if ship placed vertically & it overflows the gameboard, shift it up by
+    // the required number of places
+    let yy = !isHorizontal
+      ? y + ship.length > size
+        ? size - ship.length
+        : y
+      : y;
+
     for (let i = 0; i < ship.length; i++) {
-      gameboard[y][x] = ship;
-      isHorizontal ? x++ : y++;
+      gameboard[yy][xx] = ship;
+      isHorizontal ? xx++ : yy++;
     }
 
     return gameboard;
