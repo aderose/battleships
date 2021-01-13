@@ -311,8 +311,9 @@ test('Adding 5 ships in distinct positions and directions', () => {
   const ship4 = createShip(4);
   gameboard.place(2, 9, ship4, false);
   const ship5 = createShip(5);
+  gameboard.place(9, 1, ship5, true);
 
-  expect(gameboard.place(9, 1, ship5, true)).toEqual([
+  expect(gameboard.getBoard()).toEqual([
     [ship2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [ship2, 0, 0, 0, 0, ship5, ship5, ship5, ship5, ship5],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
