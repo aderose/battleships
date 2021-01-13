@@ -1,5 +1,5 @@
 const createGameboard = (size) => {
-  const gameboard = Array.from({ length: size }, () =>
+  let gameboard = Array.from({ length: size }, () =>
     Array.from({ length: size }, () => 0),
   );
 
@@ -51,10 +51,16 @@ const createGameboard = (size) => {
         : y
       : y;
 
+    const tempBoard = gameboard;
     for (let i = 0; i < ship.length; i++) {
-      gameboard[yy][xx] = ship;
+      if (tempBoard[yy][xx] !== 0) {
+        throw new Error('This ship overlaps another already placed');
+      }
+      tempBoard[yy][xx] = ship;
       isHorizontal ? xx++ : yy++;
     }
+
+    gameboard = tempBoard;
 
     return gameboard;
   };
