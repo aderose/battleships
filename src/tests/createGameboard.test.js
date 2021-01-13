@@ -326,3 +326,15 @@ test('Adding 5 ships in distinct positions and directions', () => {
     [0, 0, ship4, 0, 0, ship3b, 0, 0, 0, 0],
   ]);
 });
+
+test('Adding overlapping ships throws an error', () => {
+  const gameboard = createGameboard(10);
+
+  const ship2 = createShip(2);
+  gameboard.place(0, 0, ship2, false);
+  const ship3 = createShip(3);
+
+  expect(() => gameboard.place(0, 1, ship3, true)).toThrow(
+    'This ship overlaps another already placed',
+  );
+});
