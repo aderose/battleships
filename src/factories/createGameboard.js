@@ -4,6 +4,7 @@ const createGameboard = (size) => {
   );
 
   const getBoard = () => gameboard;
+
   const place = (x, y, ship, isHorizontal = true) => {
     if ([x, y, ship].includes(undefined)) {
       throw new Error('Arguments x, y & ship are required');
