@@ -14,7 +14,7 @@ const createGameboard = (size) => {
       throw new Error('x coordinate must be an integer between 0-9');
     }
 
-    if (typeof y !== 'number' || y !== parseInt(x) || y < 0 || y > size - 1) {
+    if (typeof y !== 'number' || y !== parseInt(y) || y < 0 || y > size - 1) {
       throw new Error('y coordinate must be an integer between 0-9');
     }
 
