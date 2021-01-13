@@ -298,3 +298,30 @@ test('Adding a ship horizontally of length 5 at (9, 9)', () => {
     [0, 0, 0, 0, 0, ship, ship, ship, ship, ship],
   ]);
 });
+
+test('Adding 5 ships in distinct positions and directions', () => {
+  const gameboard = createGameboard(10);
+
+  const ship2 = createShip(2);
+  gameboard.place(0, 0, ship2, false);
+  const ship3a = createShip(3);
+  gameboard.place(6, 5, ship3a, true);
+  const ship3b = createShip(3);
+  gameboard.place(5, 7, ship3b, false);
+  const ship4 = createShip(4);
+  gameboard.place(2, 9, ship4, false);
+  const ship5 = createShip(5);
+
+  expect(gameboard.place(9, 1, ship5, true)).toEqual([
+    [ship2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [ship2, 0, 0, 0, 0, ship5, ship5, ship5, ship5, ship5],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, ship3a, ship3a, ship3a, 0],
+    [0, 0, ship4, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, ship4, 0, 0, ship3b, 0, 0, 0, 0],
+    [0, 0, ship4, 0, 0, ship3b, 0, 0, 0, 0],
+    [0, 0, ship4, 0, 0, ship3b, 0, 0, 0, 0],
+  ]);
+});
