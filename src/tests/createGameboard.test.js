@@ -434,3 +434,30 @@ test('receiveAttack used on an empty cell updates the missedShots array', () => 
     { x: 4, y: 8 },
   ]);
 });
+
+test('allShipsSunk should return a boolean', () => {
+  const gameboard = createGameboard(10);
+
+  expect(typeof gameboard.allShipsSunk()).toBe('boolean');
+});
+
+test('allShipsSunk returns the expected output', () => {
+  const gameboard = createGameboard(10);
+
+  gameboard.place(0, 0, createShip(2), false);
+  gameboard.place(2, 7, createShip(4), true);
+
+  expect(gameboard.allShipsSunk()).toBe(false);
+
+  gameboard.receiveAttack(0, 0);
+  gameboard.receiveAttack(0, 1);
+
+  expect(gameboard.allShipsSunk()).toBe(false);
+
+  gameboard.receiveAttack(2, 7);
+  gameboard.receiveAttack(3, 7);
+  gameboard.receiveAttack(4, 7);
+  gameboard.receiveAttack(5, 7);
+
+  expect(gameboard.allShipsSunk()).toBe(true);
+});
