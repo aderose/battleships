@@ -15,7 +15,7 @@ test('Returns a 10x10 gameboard', () => {
   });
 });
 
-test("Throw error if coordinates and length aren't passed", () => {
+test("Throw error if coordinates and ship aren't passed", () => {
   expect(() => gameboard.place()).toThrow('Arguments x, y & ship are required');
   expect(() => gameboard.place(0)).toThrow(
     'Arguments x, y & ship are required',
@@ -336,5 +336,74 @@ test('Adding overlapping ships throws an error', () => {
 
   expect(() => gameboard.place(0, 1, ship3, true)).toThrow(
     'This ship overlaps another already placed',
+  );
+});
+
+test('Throw error if incorrect number of coordinates are passed', () => {
+  expect(() => gameboard.receiveAttack()).toThrow(
+    'Arguments x & y are required',
+  );
+  expect(() => gameboard.receiveAttack(0)).toThrow(
+    'Arguments x & y are required',
+  );
+});
+
+test('Throw error if x coordinate for receiveAttack is not an integer between 0-9', () => {
+  expect(() => gameboard.receiveAttack(null, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(true, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack([], 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack({}, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack('', 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(() => {}, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(-1, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0.8, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(20, 0)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+});
+
+test('Throw error if y coordinate for receiveAttack is not an integer between 0-9', () => {
+  expect(() => gameboard.receiveAttack(0, null)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, true)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, [])).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, {})).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, '')).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, () => {})).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, -1)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, 0.8)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => gameboard.receiveAttack(0, 20)).toThrow(
+    'y coordinate must be an integer between 0-9',
   );
 });
