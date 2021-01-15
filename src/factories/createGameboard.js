@@ -6,6 +6,7 @@ const createGameboard = (size) => {
   const missedShots = [];
 
   const getBoard = () => gameboard;
+  const getMissedShots = () => missedShots;
 
   const place = (x, y, ship, isHorizontal = true) => {
     if ([x, y, ship].includes(undefined)) {
@@ -94,9 +95,18 @@ const createGameboard = (size) => {
     if (typeof y !== 'number' || y !== parseInt(y) || y < 0 || y > size - 1) {
       throw new Error('y coordinate must be an integer between 0-9');
     }
+
+    const ship = gameboard[y][x];
+
+    if (typeof ship === 'object') {
+      ship.hit(getShipPosition(x, y, ship));
+      return true;
+    }
+    missedShots.push({ x, y });
+    return false;
   };
 
-  return { getBoard, place, receiveAttack };
+  return { getBoard, getMissedShots, place, receiveAttack };
 };
 
 export default createGameboard;
