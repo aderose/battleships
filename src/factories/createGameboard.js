@@ -53,7 +53,7 @@ const createGameboard = (size) => {
 
     const tempBoard = gameboard;
     for (let i = 0; i < ship.length; i++) {
-      if (tempBoard[yy][xx] !== 0) {
+      if (tempBoard[yy][xx]) {
         throw new Error('This ship overlaps another already placed');
       }
       tempBoard[yy][xx] = ship;
