@@ -419,3 +419,18 @@ test('receiveAttack used on a ship successfully activates its hit method', () =>
   expect(gameboard.receiveAttack(0, 1)).toBe(true);
   expect(ship.isSunk()).toBe(true);
 });
+
+test('receiveAttack used on an empty cell updates the missedShots array', () => {
+  const gameboard = createGameboard(10);
+  const ship = createShip(2);
+
+  gameboard.place(0, 0, ship, false);
+
+  expect(gameboard.receiveAttack(0, 2)).toBe(false);
+  expect(gameboard.getMissedShots()).toEqual([{ x: 0, y: 2 }]);
+  expect(gameboard.receiveAttack(4, 8)).toBe(false);
+  expect(gameboard.getMissedShots()).toEqual([
+    { x: 0, y: 2 },
+    { x: 4, y: 8 },
+  ]);
+});
