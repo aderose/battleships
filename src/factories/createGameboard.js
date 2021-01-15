@@ -3,6 +3,7 @@ const createGameboard = (size) => {
     Array.from({ length: size }, () => 0),
   );
 
+  const ships = [];
   const missedShots = [];
 
   const getBoard = () => gameboard;
@@ -64,6 +65,7 @@ const createGameboard = (size) => {
     }
 
     gameboard = tempBoard;
+    ships.push({ x, y, ship, isHorizontal });
 
     return gameboard;
   };
@@ -106,7 +108,10 @@ const createGameboard = (size) => {
     return false;
   };
 
-  return { getBoard, getMissedShots, place, receiveAttack };
+  const allShipsSunk = () =>
+    ships.every(({ x, y, ship, isHorizontal }) => ship.isSunk());
+
+  return { getBoard, getMissedShots, place, receiveAttack, allShipsSunk };
 };
 
 export default createGameboard;
