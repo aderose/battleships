@@ -407,3 +407,15 @@ test('Throw error if y coordinate for receiveAttack is not an integer between 0-
     'y coordinate must be an integer between 0-9',
   );
 });
+
+test('receiveAttack used on a ship successfully activates its hit method', () => {
+  const gameboard = createGameboard(10);
+  const ship = createShip(2);
+
+  gameboard.place(0, 0, ship, false);
+
+  expect(gameboard.receiveAttack(0, 0)).toBe(true);
+  expect(ship.isSunk()).toBe(false);
+  expect(gameboard.receiveAttack(0, 1)).toBe(true);
+  expect(ship.isSunk()).toBe(true);
+});
