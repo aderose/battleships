@@ -64,7 +64,20 @@ const createGameboard = (size) => {
 
     return gameboard;
   };
-  return { getBoard, place };
+
+  const receiveAttack = (x, y) => {
+    if ([x, y].includes(undefined)) {
+      throw new Error('Arguments x & y are required');
+    }
+    if (typeof x !== 'number' || x !== parseInt(x) || x < 0 || x > size - 1) {
+      throw new Error('x coordinate must be an integer between 0-9');
+    }
+    if (typeof y !== 'number' || y !== parseInt(y) || y < 0 || y > size - 1) {
+      throw new Error('y coordinate must be an integer between 0-9');
+    }
+  };
+
+  return { getBoard, place, receiveAttack };
 };
 
 export default createGameboard;
