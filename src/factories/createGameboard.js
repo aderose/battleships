@@ -3,6 +3,8 @@ const createGameboard = (size) => {
     Array.from({ length: size }, () => 0),
   );
 
+  const missedShots = [];
+
   const getBoard = () => gameboard;
 
   const place = (x, y, ship, isHorizontal = true) => {
@@ -63,6 +65,23 @@ const createGameboard = (size) => {
     gameboard = tempBoard;
 
     return gameboard;
+  };
+
+  const getShipPosition = (x, y, ship) => {
+    let i = 0;
+    let j = 0;
+    // count ship cells to right of passed coordinates
+    while (gameboard[y][x + i] === ship) i++;
+
+    if (i > 1) return ship.length - i;
+
+    // count ship cells below passed coordinates if cell exists at y + j
+    while (gameboard[y + j] && gameboard[y + j][x] === ship) j++;
+
+    if (j > 1) return ship.length - j;
+
+    // otherwise (x, y) is the final cell of the ship
+    return ship.length - 1;
   };
 
   const receiveAttack = (x, y) => {
