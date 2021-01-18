@@ -65,7 +65,7 @@ const createGameboard = (size) => {
     }
 
     gameboard = tempBoard;
-    ships.push({ x, y, ship, isHorizontal });
+    ships.push(ship);
 
     return gameboard;
   };
@@ -108,8 +108,7 @@ const createGameboard = (size) => {
     return false;
   };
 
-  const allShipsSunk = () =>
-    ships.every(({ x, y, ship, isHorizontal }) => ship.isSunk());
+  const allShipsSunk = () => ships.every((ship) => ship.isSunk());
 
   return { getBoard, getMissedShots, place, receiveAttack, allShipsSunk };
 };
