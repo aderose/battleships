@@ -81,39 +81,78 @@ test('Throw error if isRobot is not a boolean', () => {
   );
 });
 
+const { takeTurn } = createPlayer(gameboard);
+
 test('Throw error if takeTurn x coordinate is not an integer between 0-9', () => {
-  expect(() => createPlayer(gameboard).takeTurn()).toThrow(
+  expect(() => takeTurn()).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn(undefined)).toThrow(
+  expect(() => takeTurn(undefined)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn(null)).toThrow(
+  expect(() => takeTurn(null)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn(true)).toThrow(
+  expect(() => takeTurn(true)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn('')).toThrow(
+  expect(() => takeTurn('')).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn([])).toThrow(
+  expect(() => takeTurn([])).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn({})).toThrow(
+  expect(() => takeTurn({})).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn(() => {})).toThrow(
+  expect(() => takeTurn(() => {})).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn(-10)).toThrow(
+  expect(() => takeTurn(-10)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => createPlayer(gameboard).takeTurn(0.5)).toThrow(
+  expect(() => takeTurn(0.5)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
 
-  expect(() => createPlayer(gameboard).takeTurn(100)).toThrow(
+  expect(() => takeTurn(100)).toThrow(
     'x coordinate must be an integer between 0-9',
+  );
+});
+
+test('Throw error if takeTurn y coordinate is not an integer between 0-9', () => {
+  expect(() => takeTurn(0)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, undefined)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, null)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, true)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, '')).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, [])).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, {})).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, () => {})).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, -10)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+  expect(() => takeTurn(0, 0.5)).toThrow(
+    'y coordinate must be an integer between 0-9',
+  );
+
+  expect(() => takeTurn(0, 100)).toThrow(
+    'y coordinate must be an integer between 0-9',
   );
 });
