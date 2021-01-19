@@ -84,52 +84,39 @@ test('Throw error if isRobot is not a boolean', () => {
 const { takeTurn } = createPlayer(gameboard);
 
 test('Throw error if takeTurn x coordinate is not an integer between 0-9', () => {
-  expect(() => takeTurn()).toThrow(
+  expect(() => takeTurn()).toThrow('Arguments x & y are required');
+  expect(() => takeTurn(null, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn(undefined)).toThrow(
+  expect(() => takeTurn(true, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn(null)).toThrow(
+  expect(() => takeTurn('', 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn(true)).toThrow(
+  expect(() => takeTurn([], 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn('')).toThrow(
+  expect(() => takeTurn({}, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn([])).toThrow(
+  expect(() => takeTurn(() => {}, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn({})).toThrow(
+  expect(() => takeTurn(-10, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
-  expect(() => takeTurn(() => {})).toThrow(
-    'x coordinate must be an integer between 0-9',
-  );
-  expect(() => takeTurn(-10)).toThrow(
-    'x coordinate must be an integer between 0-9',
-  );
-  expect(() => takeTurn(0.5)).toThrow(
+  expect(() => takeTurn(0.5, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
 
-  expect(() => takeTurn(100)).toThrow(
+  expect(() => takeTurn(100, 0)).toThrow(
     'x coordinate must be an integer between 0-9',
   );
 });
 
 test('Throw error if takeTurn y coordinate is not an integer between 0-9', () => {
-  expect(() => takeTurn(0)).toThrow(
-    'y coordinate must be an integer between 0-9',
-  );
-  expect(() => takeTurn(0, undefined)).toThrow(
-    'y coordinate must be an integer between 0-9',
-  );
-  expect(() => takeTurn(0, null)).toThrow(
-    'y coordinate must be an integer between 0-9',
-  );
+  expect(() => takeTurn(0)).toThrow('Arguments x & y are required');
   expect(() => takeTurn(0, true)).toThrow(
     'y coordinate must be an integer between 0-9',
   );
