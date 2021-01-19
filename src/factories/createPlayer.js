@@ -36,7 +36,13 @@ const createPlayer = (gameboard, player = 'Player', isRobot = false) => {
     throw new Error('isRobot must be a boolean');
   }
 
-  const makeMove = () => {};
+  const size = getBoard.length;
+
+  const makeMove = (x) => {
+    if (typeof x !== 'number' || parseInt(x) !== x || x < 0 || x > size - 1) {
+      throw new Error('x coordinate must be an integer between 0-9');
+    }
+  };
 
   const randomMove = () => {};
 
