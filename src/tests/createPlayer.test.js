@@ -80,3 +80,40 @@ test('Throw error if isRobot is not a boolean', () => {
     'isRobot must be a boolean',
   );
 });
+
+test('Throw error if takeTurn x coordinate is not an integer between 0-9', () => {
+  expect(() => createPlayer(gameboard).takeTurn()).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn(undefined)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn(null)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn(true)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn('')).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn([])).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn({})).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn(() => {})).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn(-10)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+  expect(() => createPlayer(gameboard).takeTurn(0.5)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+
+  expect(() => createPlayer(gameboard).takeTurn(100)).toThrow(
+    'x coordinate must be an integer between 0-9',
+  );
+});
