@@ -36,15 +36,29 @@ const createPlayer = (gameboard, player = 'Player', isRobot = false) => {
     throw new Error('isRobot must be a boolean');
   }
 
+  // populate cells coordinate array
+  let cells = [];
+  getBoard().forEach((row, x) =>
+    row.forEach((_, y) => {
+      cells.push({ x, y });
+    }),
+  );
+
   const makeMove = (x, y) => {
-    receiveAttack(x, y);
+    const isSuccess = receiveAttack(x, y);
+    cells = cells.filter((cell) => !(cell.x === x && cell.y === y));
+    return isSuccess;
   };
 
-  const randomMove = () => {};
+  const randomMove = () => {
+    const { x, y } = cells[Math.floor(Math.random() * cells.length)];
+    return makeMove(x, y);
+  };
 
   return {
     getName: () => player,
     getType: () => (isRobot ? 'Robot' : 'Human'),
+    getCells: () => cells,
     takeTurn: isRobot ? randomMove : makeMove,
   };
 };
