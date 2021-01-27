@@ -125,16 +125,6 @@ export const Row = styled.div`
   display: flex;
 `;
 
-export const StyledInventory = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const StyledShip = styled.div`
-  display: flex;
-  margin-bottom: 2em;
-`;
-
 export const FlexFormat = styled.div`
   display: flex;
   flex-direction: column;
