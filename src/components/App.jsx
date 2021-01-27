@@ -10,7 +10,7 @@ const App = () => {
     <React.Fragment>
       <GlobalStyle />
       <Header />
-      <Game />
+      <Game size={10} />
     </React.Fragment>
   );
 };
