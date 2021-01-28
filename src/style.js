@@ -93,23 +93,25 @@ export const Cell = styled.span`
   display: block;
   width: 25px;
   height: 25px;
-  color: white;
+  color: ${(props) => (props.isActive ? 'black' : 'white')};
   outline: ${(props) => (props.hasBorder ? '2px' : 0)} solid white;
   background-color: ${(props) =>
     props.isActive ? '#229D71' : props.hasBorder ? '#333' : ''};
-  font-size: 1.5em;
+  font-size: 1em;
   text-align: center;
-  line-height: 40px;
+  line-height: 25px;
   transition: transform 0.2s ease-in;
-  text-shadow: 3px 3px black;
+  text-shadow: ${(props) => (props.isLabel ? '3px 3px black' : '')};
+  cursor: ${(props) => (props.isInteractive ? 'pointer' : 'auto')};
 
   :hover {
-    transform: scale(${(props) => (props.isHoverable ? 1.1 : undefined)});
+    transform: scale(${(props) => (props.isInteractive ? 1.1 : undefined)});
   }
 
   @media (min-width: 700px) {
     width: 30px;
     height: 30px;
+    line-height: 30px;
   }
 `;
 
