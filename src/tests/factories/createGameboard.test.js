@@ -1,5 +1,5 @@
-import createGameboard from '../factories/createGameboard';
-import createShip from '../factories/createShip';
+import createGameboard from '../../factories/createGameboard';
+import createShip from '../../factories/createShip';
 
 let gameboard, board;
 

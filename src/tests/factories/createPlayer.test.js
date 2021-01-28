@@ -1,6 +1,6 @@
-import createPlayer from '../factories/createPlayer';
-import createGameboard from '../factories/createGameboard';
-import createShip from '../factories/createShip';
+import createPlayer from '../../factories/createPlayer';
+import createGameboard from '../../factories/createGameboard';
+import createShip from '../../factories/createShip';
 
 const gameboard = createGameboard(10);
 
