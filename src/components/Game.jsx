@@ -4,9 +4,13 @@ import Gameboard from './Gameboard';
 
 import { Container, Notification, FlexFormat } from '../style';
 
-import createGameboard from '../factories/createGameboard';
+import useGameLoop from '../hooks/useGameLoop';
 
-const Game = ({ size }) => {
+const Game = () => {
+  const { setupGame } = useGameLoop();
+
+  const { playerGameboard, robotGameboard } = setupGame();
+
   return (
     <Container>
       <Notification>
@@ -14,14 +18,15 @@ const Game = ({ size }) => {
       </Notification>
       <FlexFormat>
         <Gameboard
-          title="Your Water"
-          gameboard={createGameboard(size)}
-          isPlaceable={false}
+          title={'You'}
+          gameboard={playerGameboard}
+          isLabelled={false}
+          areCellsHidden={false}
         />
         <Gameboard
-          title="Enemy Water"
-          gameboard={createGameboard(size)}
-          isPlaceable={false}
+          title={'Enemy'}
+          gameboard={robotGameboard}
+          isLabelled={false}
           isInteractive={true}
         />
       </FlexFormat>
