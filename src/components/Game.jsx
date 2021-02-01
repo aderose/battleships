@@ -7,27 +7,24 @@ import { Container, Notification, FlexFormat } from '../style';
 import useGameLoop from '../hooks/useGameLoop';
 
 const Game = () => {
-  const { setupGame } = useGameLoop();
+  const {
+    players: { human, robot },
+    startGame,
+    clickHandler,
+  } = useGameLoop(10);
 
-  const { playerGameboard, robotGameboard } = setupGame();
+  startGame();
 
   return (
     <Container>
-      <Notification>
-        It is your turn, fire a shot at the enemy waters!
-      </Notification>
+      <Notification>It is your turn, fire a shot at enemy waters!</Notification>
       <FlexFormat>
+        <Gameboard player={human} clickHandler={clickHandler} />
         <Gameboard
-          title={'You'}
-          gameboard={playerGameboard}
-          isLabelled={false}
-          areCellsHidden={false}
-        />
-        <Gameboard
-          title={'Enemy'}
-          gameboard={robotGameboard}
-          isLabelled={false}
+          player={robot}
+          areShipsHidden={true}
           isInteractive={true}
+          clickHandler={clickHandler}
         />
       </FlexFormat>
     </Container>
