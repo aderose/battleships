@@ -59,6 +59,7 @@ const createPlayer = (gameboard, player = 'Player', isRobot = false) => {
     getName: () => player,
     getType: () => (isRobot ? 'Robot' : 'Human'),
     getCells: () => cells,
+    getBoard: () => gameboard.getBoard(),
     takeTurn: isRobot ? randomMove : makeMove,
   };
 };
