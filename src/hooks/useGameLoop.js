@@ -1,36 +1,39 @@
+import { useState } from 'react';
 import createGameboard from '../factories/createGameboard';
 import createPlayer from '../factories/createPlayer';
 import createShip from '../factories/createShip';
 
-const useGameLoop = () => {
-  const setupGame = () => {
-    const playerGameboard = createGameboard(10);
-    const robotGameboard = createGameboard(10);
+const initialPositions = [
+  { x: 0, y: 0, len: 5, isHor: true },
+  { x: 1, y: 2, len: 4, isHor: false },
+  { x: 9, y: 9, len: 3, isHor: true },
+  { x: 5, y: 5, len: 3, isHor: true },
+  { x: 0, y: 9, len: 2, isHor: false },
+];
 
-    playerGameboard.place(0, 0, createShip(5), true);
-    playerGameboard.place(1, 2, createShip(4), false);
-    playerGameboard.place(9, 9, createShip(3), true);
-    playerGameboard.place(5, 5, createShip(3), true);
-    playerGameboard.place(0, 9, createShip(2), false);
+const useGameLoop = (size) => {
+  const [gameboards, setGameboards] = useState({
+    human: createGameboard(size),
+    robot: createGameboard(size),
+  });
+  const [players, setPlayers] = useState({
+    human: createPlayer(gameboards.human, 'Your Waters', false),
+    robot: createPlayer(gameboards.robot, 'Enemy Waters', true),
+  });
 
-    robotGameboard.place(0, 0, createShip(5), true);
-    robotGameboard.place(1, 2, createShip(4), false);
-    robotGameboard.place(9, 9, createShip(3), true);
-    robotGameboard.place(5, 5, createShip(3), true);
-    robotGameboard.place(0, 9, createShip(2), false);
-
-    const player = createPlayer(playerGameboard, 'Player', false);
-    const robot = createPlayer(robotGameboard, 'Robot', true);
-
-    return { playerGameboard, robotGameboard, player, robot };
+  const startGame = () => {
+    initialPositions.forEach(({ x, y, len, isHor }) => {
+      gameboards.human.place(x, y, createShip(len), isHor);
+      gameboards.robot.place(x, y, createShip(len), isHor);
+    });
   };
 
-  const clickHandler = (event, gameboard, i, j) => {
-    const didHit = gameboard.receiveAttack(i, j);
+  const clickHandler = (event, i, j) => {
+    const didHit = players.human.takeTurn(i, j);
     event.target.textContent = didHit ? 'X' : 'O';
   };
 
-  return { setupGame, clickHandler };
+  return { players, startGame, clickHandler };
 };
 
 export default useGameLoop;
