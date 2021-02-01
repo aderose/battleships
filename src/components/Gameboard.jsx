@@ -2,24 +2,19 @@ import React from 'react';
 
 import { Board, Row, Cell, Heading } from '../style';
 
-import useGameLoop from '../hooks/useGameLoop';
-
 const Gameboard = ({
-  title,
-  gameboard,
-  isLabelled = true,
+  player,
+  clickHandler,
+  isLabelled = false,
   isInteractive = false,
-  areCellsHidden = true,
+  areShipsHidden = false,
 }) => {
   const labels = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-
-  const board = gameboard.getBoard();
-
-  const { clickHandler } = useGameLoop();
+  const board = player.getBoard();
 
   return (
     <Board>
-      <Heading>{title}</Heading>
+      <Heading>{player.getName()}</Heading>
       {isLabelled && (
         <Row>
           {labels.map((label, i) => (
@@ -39,9 +34,9 @@ const Gameboard = ({
           {row.map((cell, i) => (
             <Cell
               key={i}
-              isActive={cell && !areCellsHidden}
+              isActive={cell && !areShipsHidden}
               isInteractive={isInteractive}
-              onClick={(event) => clickHandler(event, gameboard, i, j)}
+              onClick={(e) => clickHandler(e, i, j)}
               hasBorder
             />
           ))}
