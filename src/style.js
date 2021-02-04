@@ -113,6 +113,7 @@ export const Cell = styled.td`
   padding: 0;
   margin: 0;
   transition: border 0.2s ease-in;
+  user-select: none;
   text-shadow: ${(props) => (props.isLabel ? '3px 3px black' : '')};
   cursor: ${(props) => (props.isInteractive ? 'pointer' : 'auto')};
 
