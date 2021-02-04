@@ -3,7 +3,8 @@ import React from 'react';
 import { BoardContainer, Heading, Board, Cell } from '../style';
 
 const Gameboard = ({
-  player,
+  title,
+  board,
   clickHandler,
   isLabelled = false,
   isInteractive = false,
@@ -13,7 +14,7 @@ const Gameboard = ({
 
   return (
     <BoardContainer>
-      <Heading>{player.getName()}</Heading>
+      <Heading>{title}</Heading>
       <Board>
         <tbody>
           {isLabelled && (
@@ -25,7 +26,7 @@ const Gameboard = ({
               ))}
             </tr>
           )}
-          {player.getBoard().map((row, j) => (
+          {board.map((row, j) => (
             <tr key={j}>
               {isLabelled && (
                 <Cell key={j} isLabel>
@@ -37,8 +38,8 @@ const Gameboard = ({
                   key={i}
                   isActive={cell && !areShipsHidden}
                   isInteractive={isInteractive}
-                  onClick={(e) => {
-                    if (isInteractive) clickHandler(e, i, j);
+                  onClick={() => {
+                    if (isInteractive) clickHandler(i, j);
                   }}
                 />
               ))}
