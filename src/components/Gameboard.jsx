@@ -5,12 +5,19 @@ import { BoardContainer, Heading, Board, Cell } from '../style';
 const Gameboard = ({
   title,
   board,
+  attacks,
   clickHandler,
   isLabelled = false,
   isInteractive = false,
   areShipsHidden = false,
 }) => {
   const labels = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+  const getIcon = (x, y) => {
+    const attack = attacks.find((attack) => attack.x === x && attack.y === y);
+    if (!attack) return;
+    return attack.isSuccess ? 'X' : 'O';
+  };
 
   return (
     <BoardContainer>
@@ -41,7 +48,9 @@ const Gameboard = ({
                   onClick={() => {
                     if (isInteractive) clickHandler(i, j);
                   }}
-                />
+                >
+                  {getIcon(i, j)}
+                </Cell>
               ))}
             </tr>
           ))}
