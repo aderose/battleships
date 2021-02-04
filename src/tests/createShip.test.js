@@ -1,4 +1,4 @@
-import createShip from '../../factories/createShip';
+import createShip from '../factories/createShip';
 
 test('Throw error if length is not a number', () => {
   expect(() => createShip()).toThrow('Length must be a number');
