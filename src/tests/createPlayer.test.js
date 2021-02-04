@@ -149,8 +149,8 @@ test('Non-robot takeTurn returns a boolean depending on if a ship is hit or not'
   const gameboard = createGameboard(10);
   gameboard.place(0, 0, createShip(4), true);
   const player = createPlayer(gameboard);
-  expect(player.takeTurn(9, 9)).toEqual({ isSuccess: false, x: 9, y: 9 });
-  expect(player.takeTurn(0, 0)).toEqual({ isSuccess: true, x: 0, y: 0 });
+  expect(player.takeTurn(9, 9)).toBe(false);
+  expect(player.takeTurn(0, 0)).toBe(true);
 
   const testCells = [];
   for (let x = 0; x < 10; x++) {
