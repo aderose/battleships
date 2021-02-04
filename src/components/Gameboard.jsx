@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Board, Row, Cell, Heading } from '../style';
+import { BoardContainer, Heading, Board, Cell } from '../style';
 
 const Gameboard = ({
   player,
@@ -10,39 +10,43 @@ const Gameboard = ({
   areShipsHidden = false,
 }) => {
   const labels = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-  const board = player.getBoard();
 
   return (
-    <Board>
+    <BoardContainer>
       <Heading>{player.getName()}</Heading>
-      {isLabelled && (
-        <Row>
-          {labels.map((label, i) => (
-            <Cell key={i} isLabel>
-              {label}
-            </Cell>
-          ))}
-        </Row>
-      )}
-      {board.map((row, j) => (
-        <Row key={j}>
+      <Board>
+        <tbody>
           {isLabelled && (
-            <Cell key={j} isLabel>
-              {j}
-            </Cell>
+            <tr>
+              {labels.map((label, i) => (
+                <Cell key={i} isLabel>
+                  {label}
+                </Cell>
+              ))}
+            </tr>
           )}
-          {row.map((cell, i) => (
-            <Cell
-              key={i}
-              isActive={cell && !areShipsHidden}
-              isInteractive={isInteractive}
-              onClick={(e) => clickHandler(e, i, j)}
-              hasBorder
-            />
+          {player.getBoard().map((row, j) => (
+            <tr key={j}>
+              {isLabelled && (
+                <Cell key={j} isLabel>
+                  {j}
+                </Cell>
+              )}
+              {row.map((cell, i) => (
+                <Cell
+                  key={i}
+                  isActive={cell && !areShipsHidden}
+                  isInteractive={isInteractive}
+                  onClick={(e) => {
+                    if (isInteractive) clickHandler(e, i, j);
+                  }}
+                />
+              ))}
+            </tr>
           ))}
-        </Row>
-      ))}
-    </Board>
+        </tbody>
+      </Board>
+    </BoardContainer>
   );
 };
 
