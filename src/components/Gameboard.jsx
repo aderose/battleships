@@ -13,8 +13,12 @@ const Gameboard = ({
 }) => {
   const labels = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
+  const getAttack = (x, y) => {
+    return attacks.find((attack) => attack.x === x && attack.y === y);
+  };
+
   const getIcon = (x, y) => {
-    const attack = attacks.find((attack) => attack.x === x && attack.y === y);
+    const attack = getAttack(x, y);
     if (!attack) return;
     return attack.isSuccess ? 'X' : 'O';
   };
@@ -44,9 +48,9 @@ const Gameboard = ({
                 <Cell
                   key={i}
                   isActive={cell && !areShipsHidden}
-                  isInteractive={isInteractive}
+                  isInteractive={isInteractive && !getAttack(i, j)}
                   onClick={() => {
-                    if (isInteractive) clickHandler(i, j);
+                    if (isInteractive && !getAttack(i, j)) clickHandler(i, j);
                   }}
                 >
                   {getIcon(i, j)}
