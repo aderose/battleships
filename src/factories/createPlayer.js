@@ -47,7 +47,7 @@ const createPlayer = (gameboard, player = 'Player', isRobot = false) => {
   const makeMove = (x, y) => {
     const isSuccess = receiveAttack(x, y);
     cells = cells.filter((cell) => !(cell.x === x && cell.y === y));
-    return { x, y, isSuccess };
+    return isSuccess;
   };
 
   const randomMove = () => {
