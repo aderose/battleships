@@ -8,7 +8,7 @@ import createShip from '../factories/createShip';
 
 import { Container, Notification, FlexibleFormat } from '../style';
 
-const Game = () => {
+const Game = ({ size }) => {
   const initialPositions = [
     { x: 0, y: 0, len: 5, isHor: true },
     { x: 1, y: 2, len: 4, isHor: false },
@@ -18,8 +18,8 @@ const Game = () => {
   ];
 
   const [gameboards, setGameboards] = useState({
-    human: createGameboard(10),
-    robot: createGameboard(10),
+    human: createGameboard(size),
+    robot: createGameboard(size),
   });
 
   const { human, robot } = {
@@ -38,21 +38,19 @@ const Game = () => {
       human: gameboards.human,
       robot: gameboards.robot,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const robotMove = () => {
     setTimeout(() => {
-      const { x, y, isSuccess } = robot.takeTurn();
-      console.log(x, y, isSuccess);
+      robot.takeTurn();
       setIsHumanTurn(true);
-    }, 500);
+    }, 1000);
   };
 
-  const clickHandler = (event, i, j) => {
-    console.log(isHumanTurn);
+  const clickHandler = (i, j) => {
     if (!isHumanTurn) return;
-    const { isSuccess } = human.takeTurn(i, j);
-    event.target.textContent = isSuccess ? 'X' : 'O';
+    human.takeTurn(i, j);
     setIsHumanTurn(false);
     robotMove();
   };
@@ -65,9 +63,14 @@ const Game = () => {
           : 'The enemy is taking their shot!'}
       </Notification>
       <FlexibleFormat>
-        <Gameboard player={human} clickHandler={clickHandler} />
         <Gameboard
-          player={robot}
+          name={human.getName()}
+          board={human.getBoard()}
+          clickHandler={clickHandler}
+        />
+        <Gameboard
+          name={robot.getName()}
+          board={robot.getBoard()}
           areShipsHidden={true}
           isInteractive={true}
           clickHandler={clickHandler}
