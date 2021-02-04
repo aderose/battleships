@@ -29,6 +29,8 @@ const Game = ({ size }) => {
 
   const [isHumanTurn, setIsHumanTurn] = useState(true);
 
+  const [attacks, setAttacks] = useState({ human: [], robot: [] });
+
   useEffect(() => {
     initialPositions.forEach(({ x, y, len, isHor }) => {
       gameboards.human.place(x, y, createShip(len), isHor);
@@ -44,6 +46,10 @@ const Game = ({ size }) => {
   const robotMove = () => {
     setTimeout(() => {
       robot.takeTurn();
+      setAttacks({
+        human: gameboards.human.getAttacks(),
+        robot: gameboards.robot.getAttacks(),
+      });
       setIsHumanTurn(true);
     }, 1000);
   };
@@ -51,6 +57,10 @@ const Game = ({ size }) => {
   const clickHandler = (i, j) => {
     if (!isHumanTurn) return;
     human.takeTurn(i, j);
+    setAttacks({
+      ...attacks,
+      human: gameboards.human.getAttacks(),
+    });
     setIsHumanTurn(false);
     robotMove();
   };
@@ -64,13 +74,17 @@ const Game = ({ size }) => {
       </Notification>
       <FlexibleFormat>
         <Gameboard
-          name={human.getName()}
-          board={human.getBoard()}
+          size={size}
+          title={human.getName()}
+          board={gameboards.human.getBoard()}
+          attacks={attacks.robot}
           clickHandler={clickHandler}
         />
         <Gameboard
-          name={robot.getName()}
-          board={robot.getBoard()}
+          size={size}
+          title={robot.getName()}
+          board={gameboards.robot.getBoard()}
+          attacks={attacks.human}
           areShipsHidden={true}
           isInteractive={true}
           clickHandler={clickHandler}
