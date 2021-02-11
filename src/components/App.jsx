@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 
 import Header from './Header';
 import Game from './Game';
+import Menu from './Menu';
 
 import { GlobalStyle } from '../style';
 import GameOver from './GameOver';
 
 const App = () => {
   const [gameState, setGameState] = useState({
-    start: false,
-    game: true,
+    start: true,
+    game: false,
     end: false,
     isHumanWinner: undefined,
   });
@@ -36,6 +37,7 @@ const App = () => {
     <React.Fragment>
       <GlobalStyle />
       <Header />
+      {gameState.start && <Menu size={10} />}
       {gameState.game && <Game size={10} endGame={endGame} />}
       {gameState.end && (
         <GameOver
