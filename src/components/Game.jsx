@@ -90,7 +90,7 @@ const Game = ({ size, endGame, gameboard }) => {
           title={robot.getName()}
           board={gameboards.robot.getBoard()}
           receivedAttacks={attacks.robot}
-          areShipsHidden={false}
+          areShipsHidden={true}
           isInteractive={true}
           clickHandler={clickHandler}
         />
