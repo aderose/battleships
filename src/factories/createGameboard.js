@@ -55,7 +55,9 @@ const createGameboard = (size) => {
         : y
       : y;
 
-    const tempBoard = gameboard;
+    // make value copy of gameboard to avoid gameboard state update
+    // until all ship positions have been checked
+    const tempBoard = gameboard.map((row) => [...row]);
     for (let i = 0; i < ship.length; i++) {
       if (tempBoard[yy][xx]) {
         throw new Error('This ship overlaps another already placed');
