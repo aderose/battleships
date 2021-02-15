@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #111;
-    overflow: hidden;
   }
   :root {
     --primary-color: #229d71;
