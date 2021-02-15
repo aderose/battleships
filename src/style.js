@@ -185,7 +185,7 @@ export const Text = styled.p`
 export const TooltipContainer = styled.span`
   position: absolute;
   background-color: #222;
-  width: 190px;
+  width: ${({ width }) => width};
   border-radius: 20px;
   padding: 0.25em 1em;
   border: 1px solid var(--primary-color);
