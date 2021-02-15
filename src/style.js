@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #111;
+    overflow: hidden;
   }
   :root {
     --primary-color: #229d71;
@@ -162,7 +163,7 @@ export const Button = styled.button`
   border-radius: 3px;
   padding: 0.5em 1em;
   font-size: 1em;
-  margin: ${(props) => props.margin};
+  margin: ${({ margin }) => margin};
   border: none;
   cursor: pointer;
   transition: filter 0.2s ease-out;
@@ -179,4 +180,15 @@ export const Button = styled.button`
 export const Text = styled.p`
   color: white;
   margin: 1em;
+`;
+
+export const TooltipContainer = styled.span`
+  position: absolute;
+  background-color: #222;
+  width: 190px;
+  border-radius: 20px;
+  padding: 0.25em 1em;
+  border: 1px solid var(--primary-color);
+  border-bottom-left-radius: 0px;
+  color: white;
 `;
