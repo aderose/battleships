@@ -12,6 +12,7 @@ const Menu = ({ size, startGame }) => {
   const [gameboard, setGameboard] = useState(createGameboard(size));
   const [ships, setShips] = useState([5, 4, 3, 3, 2]);
   const [isHorizontal, setIsHorizontal] = useState(true);
+  const [isFinishedPlacing, setIsFinishedPlacing] = useState(false);
   const [isInteractive, setIsInteractive] = useState(true);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
@@ -19,6 +20,7 @@ const Menu = ({ size, startGame }) => {
 
   const start = () => {
     setIsInteractive(false);
+    setIsFinishedPlacing(true);
     setTimeout(() => startGame(gameboard), 1000);
   };
 
@@ -50,7 +52,12 @@ const Menu = ({ size, startGame }) => {
         {isHorizontal ? 'Vertical' : 'Horizontal'}
       </Button>
       <MouseTooltip visible={isTooltipVisible} offsetX={10} offsetY={-35}>
-        <TooltipContainer>Can't place ship here!</TooltipContainer>
+        <TooltipContainer width="190px">
+          Can't place ship here!
+        </TooltipContainer>
+      </MouseTooltip>
+      <MouseTooltip visible={isFinishedPlacing} offsetX={10} offsetY={-35}>
+        <TooltipContainer width="150px">Game Starting!</TooltipContainer>
       </MouseTooltip>
     </Container>
   );
